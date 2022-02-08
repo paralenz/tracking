@@ -36,58 +36,64 @@ export const TrackingProvider: FC<TrackingProviderProps> = ({
     linkTracking: false // because of enableLinkTracking()
   })
 
-  const Tracking = () => {
-    const {
-      trackEvents,
-      enableLinkTracking,
-      trackPageView,
-      trackEvent: _trackEvent,
-      pushInstruction
-    } = useMatomo()
+  return (
+    <MatomoProvider value={instance}>
+      <Tracking>
+        {children}
+      </Tracking>
+    </MatomoProvider>
+  )
+}
 
-    useEffect(() => {
-      trackEvents()
-      enableLinkTracking()
-    }, [trackEvents, enableLinkTracking])
+type TrackingProps = {
+  children: JSX.Element
+}
 
-    const trackPage = (pageName: string) => {
-      trackPageView({ documentTitle: pageName })
-    }
+const Tracking: FC<TrackingProps> = ({ children }) => {
+  const {
+    trackEvents,
+    enableLinkTracking,
+    trackPageView,
+    trackEvent: _trackEvent,
+    pushInstruction
+  } = useMatomo()
 
-    const trackEvent = ({
+  useEffect(() => {
+    trackEvents()
+    enableLinkTracking()
+  }, [trackEvents, enableLinkTracking])
+
+  const trackPage = (pageName: string) => {
+    trackPageView({ documentTitle: pageName })
+  }
+
+  const trackEvent = ({
+    category,
+    action,
+    name,
+    value
+  }: TrackEventParams) => {
+    _trackEvent({
       category,
       action,
       name,
       value
-    }: TrackEventParams) => {
-      _trackEvent({
-        category,
-        action,
-        name,
-        value
-      })
-    }
+    })
+  }
 
-    const trackUserId = (userId: string) => {
-      pushInstruction('setUserId', userId)
-    }
-
-    return (
-      <TrackingContext.Provider
-        value={{
-          trackPage,
-          trackEvent,
-          trackUserId
-        }}
-      >
-        {children}
-      </TrackingContext.Provider>
-    )
+  const trackUserId = (userId: string) => {
+    pushInstruction('setUserId', userId)
   }
 
   return (
-    <MatomoProvider value={instance}>
-      <Tracking />
-    </MatomoProvider>
+    <TrackingContext.Provider
+      value={{
+        trackPage,
+        trackEvent,
+        trackUserId
+      }}
+    >
+      {children}
+    </TrackingContext.Provider>
   )
 }
