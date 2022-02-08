@@ -15,6 +15,5 @@ jobs:
           token: ${{ secrets.NPM_AUTH_TOKEN }}
           registry-url: https://npm.pkg.github.com/
       - run: yarn lint
-      - run: yarn test
       - run: yarn build
       - run: yarn publish
