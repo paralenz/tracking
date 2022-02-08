@@ -1,4 +1,4 @@
-import React, { createContext, FC, useEffect } from 'react'
+import React, { createContext, FC } from 'react'
 import { MatomoProvider, createInstance, useMatomo } from '@datapunt/matomo-tracker-react'
 import { TrackEventParams } from '@datapunt/matomo-tracker-react/lib/types'
 
@@ -58,10 +58,8 @@ const Tracking: FC<TrackingProps> = ({ children }) => {
     pushInstruction
   } = useMatomo()
 
-  useEffect(() => {
-    trackEvents()
-    enableLinkTracking()
-  }, [trackEvents, enableLinkTracking])
+  trackEvents()
+  enableLinkTracking()
 
   const trackPage = (pageName: string) => {
     trackPageView({ documentTitle: pageName })
