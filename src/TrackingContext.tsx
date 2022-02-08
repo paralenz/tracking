@@ -32,8 +32,7 @@ export const TrackingProvider: FC<TrackingProviderProps> = ({
 }) => {
   const instance = createInstance({
     urlBase: urlBase ?? 'https://analytics.paralenz.com/',
-    siteId,
-    linkTracking: false // because of enableLinkTracking()
+    siteId
   })
 
   return (
@@ -51,15 +50,10 @@ type TrackingProps = {
 
 const Tracking: FC<TrackingProps> = ({ children }) => {
   const {
-    trackEvents,
-    enableLinkTracking,
     trackPageView,
     trackEvent: _trackEvent,
     pushInstruction
   } = useMatomo()
-
-  trackEvents()
-  enableLinkTracking()
 
   const trackPage = (pageName: string) => {
     trackPageView({ documentTitle: pageName })
