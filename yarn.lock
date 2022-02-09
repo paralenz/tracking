@@ -724,6 +724,13 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
+"@types/matomo-tracker-react-native@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@types/matomo-tracker-react-native/-/matomo-tracker-react-native-0.3.0.tgz#971b1a3ca183e8d3ed0421c6a9c9150b1650c78a"
+  integrity sha512-1ARlXuLb+g5Lw4zqBdqRPEzEIrp5zS4mHwqMYcBj1Iwjsj4TNVmOaONihPWDCZgYVEcku7RnZwBzizn9abRKvg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/node@*":
   version "17.0.16"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.16.tgz#e3733f46797b9df9e853ca9f719c8a6f7b84cd26"
@@ -739,7 +746,7 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react@^17.0.39":
+"@types/react@*", "@types/react@^17.0.39":
   version "17.0.39"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.39.tgz#d0f4cde092502a6db00a1cded6e6bf2abb7633ce"
   integrity sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug==
@@ -3014,6 +3021,11 @@ makeerror@1.0.12:
   integrity sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==
   dependencies:
     tmpl "1.0.5"
+
+matomo-tracker-react-native@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/matomo-tracker-react-native/-/matomo-tracker-react-native-0.3.0.tgz#423b69eff93885b127f34a96f7c5233de06e4014"
+  integrity sha512-aZsAlZ1QquxtLiu7eU27PY1Gxedde9DhCJJSbCAOugc0pwUhnH74dJtG4S29FUnRZgsquPIoK1K4Zx+QwdZJ7w==
 
 merge-stream@^2.0.0:
   version "2.0.0"
