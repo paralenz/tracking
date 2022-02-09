@@ -22,7 +22,8 @@
         "access": "restricted"
     },
     "dependencies": {
-        "@datapunt/matomo-tracker-react": "^0.5.1"
+        "@datapunt/matomo-tracker-react": "^0.5.1",
+        "matomo-tracker-react-native": "^0.3.0"
     },
     "peerDependencies": {
         "react": "^17.0.2"
@@ -30,6 +31,7 @@
     "devDependencies": {
         "@jest/types": "^27.5.1",
         "@paralenz/eslint-config-typescript-react": "^1.0.5",
+        "@types/matomo-tracker-react-native": "^0.3.0",
         "@types/react": "^17.0.39",
         "jest": "^27.5.1",
         "ts-jest": "^27.1.3",
