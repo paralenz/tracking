@@ -1,4 +1,5 @@
 export { TrackingProvider } from './WebTrackingContext'
 export { MobileTrackingProvider } from './MobileTrackingContext'
+export { Tracking } from './Tracking'
 export { useTracking } from './useTracking'
 export { useMobileTracking } from './useTracking'
