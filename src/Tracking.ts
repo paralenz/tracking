@@ -1,26 +1,27 @@
 import { TrackEventParams } from '@datapunt/matomo-tracker-react/lib/types'
-import { useMatomo } from 'matomo-tracker-react-native'
+import MatomoTracker from 'matomo-tracker-react-native'
 
 export const Tracking = (() => {
-  const { trackScreenView, trackEvent: _trackEvent, trackAppStart } = useMatomo()
-
   const urlBase = 'https://analytics.paralenz.com/'
   let uid: string
   let siteId: number
   let debug = false
 
+  let matomoTracker: MatomoTracker
+
   return { // public interface
     init: (_siteId: number, _debug = false) => {
       siteId = _siteId
       debug = _debug
+      matomoTracker = new MatomoTracker({ urlBase, siteId })
       debug && console.log('Tracking initialized with siteId:', siteId, 'and urlBase:', urlBase)
-      trackAppStart({})
+      matomoTracker.trackAppStart({})
     },
 
     trackPage: (name: string) => {
       // eslint-disable-next-line no-throw-literal
       if (!siteId) return console.error('Tracking not initialized')
-      trackScreenView({ name, userInfo: { uid } })
+      matomoTracker.trackScreenView({ name, userInfo: { uid } })
       debug && console.log('trackPage', name)
     },
 
@@ -32,7 +33,7 @@ export const Tracking = (() => {
     }: TrackEventParams) => {
       // eslint-disable-next-line no-throw-literal
       if (!siteId) return console.error('Tracking not initialized')
-      _trackEvent({ category, action, name, value, userInfo: { uid } })
+      matomoTracker.trackEvent({ category, action, name, value, userInfo: { uid } })
       debug && console.log('trackEvent', category, action, name, value)
     },
 
