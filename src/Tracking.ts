@@ -25,6 +25,13 @@ export const Tracking = (() => {
       debug && console.log('trackPage', name)
     },
 
+    trackSearch: (keyword: string) => {
+      // eslint-disable-next-line no-throw-literal
+      if (!siteId) return console.error('Tracking not initialized')
+      matomoTracker.trackSiteSearch({ keyword, userInfo: { uid } })
+      debug && console.log('trackSearch', keyword)
+    },
+
     trackEvent: ({
       category,
       action,
