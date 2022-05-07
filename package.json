@@ -26,11 +26,13 @@
         "matomo-tracker-react-native": "^0.3.0"
     },
     "peerDependencies": {
+        "@react-native-async-storage/async-storage": "^1.17.3",
         "react": "^17.0.2"
     },
     "devDependencies": {
         "@jest/types": "^27.5.1",
         "@paralenz/eslint-config-typescript-react": "^1.0.5",
+        "@types/jest": "^27.5.0",
         "@types/matomo-tracker-react-native": "^0.3.0",
         "@types/react": "^17.0.43",
         "jest": "^27.5.1",

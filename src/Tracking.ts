@@ -1,54 +1,96 @@
-import { TrackEventParams } from '@datapunt/matomo-tracker-react/lib/types'
-import MatomoTracker from 'matomo-tracker-react-native'
+import AsyncStorage, { AsyncStorageStatic } from '@react-native-async-storage/async-storage'
+import apps from './apps'
+import { ITracking, StorageProvider, User, AppName } from './types'
 
-export const Tracking = (() => {
-  const urlBase = 'https://analytics.paralenz.com/'
-  let uid: string
-  let siteId: number
-  let debug = false
+export class Tracking implements ITracking {
+  private readonly storageKey = '@paralenz-tracking/enabled'
 
-  let matomoTracker: MatomoTracker
+  isEnabled = false
 
-  return { // public interface
-    init: (_siteId: number, _debug = false) => {
-      siteId = _siteId
-      debug = _debug
-      matomoTracker = new MatomoTracker({ urlBase, siteId })
-      debug && console.log('Tracking initialized with siteId:', siteId, 'and urlBase:', urlBase)
-      matomoTracker.trackAppStart({})
-    },
+  debugEnabled = false
 
-    trackPage: (name: string) => {
-      // eslint-disable-next-line no-throw-literal
-      if (!siteId) return console.error('Tracking not initialized')
-      matomoTracker.trackScreenView({ name, userInfo: { uid } })
-      debug && console.log('trackPage', name)
-    },
+  user?: User | undefined = undefined
 
-    trackSearch: (keyword: string) => {
-      // eslint-disable-next-line no-throw-literal
-      if (!siteId) return console.error('Tracking not initialized')
-      matomoTracker.trackSiteSearch({ keyword, userInfo: { uid } })
-      debug && console.log('trackSearch', keyword)
-    },
+  siteId?: number | undefined = undefined
 
-    trackEvent: ({
-      category,
-      action,
-      name,
-      value
-    }: TrackEventParams) => {
-      // eslint-disable-next-line no-throw-literal
-      if (!siteId) return console.error('Tracking not initialized')
-      matomoTracker.trackEvent({ category, action, name, value, userInfo: { uid } })
-      debug && console.log('trackEvent', category, action, name, value)
-    },
-
-    trackUserId: (userId: string) => {
-      // eslint-disable-next-line no-throw-literal
-      if (!siteId) return console.error('Tracking not initialized')
-      uid = userId
-      debug && console.log('trackUserId', uid)
+  constructor (
+    private readonly appName: AppName,
+    private readonly storageProvider: StorageProvider | AsyncStorageStatic = AsyncStorage) {
+    if (!apps[appName]) {
+      return this.throw(
+        [
+          `${appName} is not a known application.`,
+          'Please verify that is has been added to the record of known apps that should be tracked'
+        ].join(' ')
+      )
     }
+    this.siteId = apps[appName]
+    // this.isEnabled = Boolean(Promise.resolve(storageProvider.getItem(this.storageKey))) ?? false
   }
-})()
+
+  optOutOfTracking = async (value: boolean) => {
+    this.logger(`User ${this.user?.id} wishes to opt out of tracking`)
+
+    this.storageProvider.setItem(this.storageKey, `${value}`)
+
+    this.isEnabled = value
+
+    return Promise.resolve(
+      Boolean(this.storageProvider.getItem(this.storageKey))
+    )
+  }
+
+  identify = (user: User) => {
+    this.logger(`Identifying user ${user.id}`)
+    this.user = user
+
+    return this
+  }
+
+  trackEvent = (event: string, properties?: Record<string, unknown>) => {
+    if (!this.siteId) {
+      return this.throw('App has not been set. Please call the init method.')
+    }
+    if (!this.isEnabled) {
+      this.logger(
+        'Skipping tracking due to user who has opted out of tracking',
+        `Event: ${event}`,
+        `User: ${this.user?.id ?? 'unknown'}`,
+        `Properties ${JSON.stringify(properties)}`
+      )
+
+      return this
+    }
+
+    this.logger(
+      [
+        `Tracking event: ${event}`,
+        `for user: ${this.user?.id ?? 'unknown'}`,
+        properties && `with properties ${JSON.stringify(properties)}`
+      ]
+        .filter(Boolean)
+        .join(' ')
+    )
+
+    //  @TODO: Implement this
+    this.logger(event, JSON.stringify(properties))
+
+    return this
+  }
+
+  enableDebugging = (on: boolean) => {
+    this.debugEnabled = on
+
+    return this.debugEnabled
+  }
+
+  private logger = (message?: any, ...optionalParams: any[]) => {
+    if (!this.debugEnabled) { return }
+
+    return console.log(message, optionalParams)
+  }
+
+  private throw = (message: string) => {
+    throw new Error(`Paralenz Tracking: ${message}`)
+  }
+}
