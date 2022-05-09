@@ -1,3 +1,4 @@
+import { AsyncStorageStatic } from '@react-native-async-storage/async-storage'
 import apps from './apps'
 
 export type AppName = keyof typeof apps
@@ -15,9 +16,6 @@ export interface ITracking {
 
 export type User = {
   id: string
-  email?: string
-  country?: string
 }
 
-// @TODO: Install types for: `react-native-async-storage`
-export type StorageProvider = Storage
+export type StorageProvider = Storage | AsyncStorageStatic
