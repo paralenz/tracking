@@ -1,7 +1,7 @@
 export type User = JsonMap & {
-  firstName?: string
-  lastName?: string
-  email: string
+  firstName?: string | null
+  lastName?: string | null
+  email: string | null
 }
 
 export type JsonValue = boolean | number | string | null | JsonList | JsonMap;
@@ -14,6 +14,7 @@ export type JsonList = Array<JsonValue>
 
 export type UserProperties = {
   $set?: JsonMap
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   $set_once?: JsonMap
 }
 
