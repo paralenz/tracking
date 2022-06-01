@@ -646,7 +646,7 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@jest/types@^28.0.2", "@jest/types@^28.1.0":
+"@jest/types@^28.1.0":
   version "28.1.0"
   resolved "https://registry.yarnpkg.com/@jest/types/-/types-28.1.0.tgz#508327a89976cbf9bd3e1cc74641a29fd7dfd519"
   integrity sha512-xmEggMPr317MIOjjDoZ4ejCSr9Lpbt/u34+dvc99t7DS8YirW5rwZEhzKPC2BMUFkUhI48qs6qLUSGw5FuL0GA==
@@ -1344,6 +1344,11 @@ camelcase@^5.3.1:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
+
+camelcase@^6.2.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-6.3.0.tgz#5685b95eb209ac9c0c177467778c9c84df58ba9a"
+  integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001286:
   version "1.0.30001310"
@@ -3129,6 +3134,11 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
+leven@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/leven/-/leven-3.1.0.tgz#77891de834064cccba82ae7842bb6b14a13ed7f2"
+  integrity sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==
+
 levn@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.4.1.tgz#ae4562c007473b932a6200d403268dd2fffc6ade"
@@ -3581,10 +3591,10 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
-posthog-js@^1.21.1:
-  version "1.21.1"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.21.1.tgz#3f4242c2832b7fc80b4a177b0d0e1b71da2b8272"
-  integrity sha512-/mf0ezl9DAZp0LA0fupNvII/O0/1IWqsDiLma5oKHpGqyhFA2ObRENxiZvdSt+UFvcXtoieDsW5SoDPZMFvWgA==
+posthog-js@^1.22.0:
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.22.0.tgz#7cab894e9b1518737903008e188f1163240932c6"
+  integrity sha512-R0bCIDsh2PdTDTJjTicfDu9CLCcELDhaYsPE09yspIefVjDjzs+XbO8S4ERrgvwTO9jUejC8gQ3JAlcsOfznlA==
   dependencies:
     "@sentry/types" "^6.11.0"
     fflate "^0.4.1"
