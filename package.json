@@ -1,6 +1,6 @@
 {
     "name": "@paralenz/tracking",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -21,17 +21,13 @@
         "registry": "https://npm.pkg.github.com",
         "access": "public"
     },
-    "dependencies": {
-        "posthog-js": "^1.21.1",
-        "posthog-react-native": "^1.1.5"
-    },
     "peerDependencies": {
-        "react": "*"
+        "posthog-js": "*",
+        "posthog-react-native": "*"
     },
     "devDependencies": {
         "@jest/types": "^27.5.1",
         "@paralenz/eslint-config-typescript-react": "^1.2.3",
-        "@types/react": "^17.0.43",
         "jest": "^27.5.1",
         "ts-jest": "^28.0.3",
         "ts-node": "^10.8.0",
