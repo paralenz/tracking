@@ -1,6 +1,6 @@
 {
     "name": "@paralenz/tracking",
-    "version": "1.0.10",
+    "version": "2.0.0",
     "description": "",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -19,23 +19,22 @@
     },
     "publishConfig": {
         "registry": "https://npm.pkg.github.com",
-        "access": "restricted"
+        "access": "public"
     },
     "dependencies": {
-        "@datapunt/matomo-tracker-react": "^0.5.1",
-        "matomo-tracker-react-native": "^0.3.0"
+        "posthog-js": "^1.21.1",
+        "posthog-react-native": "^1.1.5"
     },
     "peerDependencies": {
-        "react": "^17.0.2"
+        "react": "*"
     },
     "devDependencies": {
         "@jest/types": "^27.5.1",
-        "@paralenz/eslint-config-typescript-react": "^1.0.5",
-        "@types/matomo-tracker-react-native": "^0.3.0",
+        "@paralenz/eslint-config-typescript-react": "^1.2.3",
         "@types/react": "^17.0.43",
-        "jest": "^28.1.0",
-        "ts-jest": "^28.0.2",
-        "ts-node": "^10.7.0",
-        "typescript": "^4.6.4"
+        "jest": "^27.5.1",
+        "ts-jest": "^28.0.3",
+        "ts-node": "^10.8.0",
+        "typescript": "^4.7.2"
     }
 }
