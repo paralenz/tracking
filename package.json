@@ -1,6 +1,6 @@
 {
     "name": "@paralenz/tracking",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "description": "",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -22,10 +22,8 @@
         "access": "public"
     },
     "peerDependencies": {
+        "posthog-js": "*",
         "posthog-react-native": "*"
-    },
-    "dependencies": {
-        "posthog-js": "^1.22.0"
     },
     "devDependencies": {
         "@jest/types": "^27.5.1",

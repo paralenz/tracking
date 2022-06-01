@@ -2,7 +2,7 @@ import { PostHog, JsonMap, Configuration } from 'posthog-react-native'
 import { CaptureProperties, ITracking, UserProperties, User } from './types'
 export * from './types'
 
-export class Tracking<TEvents> implements ITracking<TEvents> {
+export class NativeTracking<TEvents> implements ITracking<TEvents> {
   private readonly client = new PostHog.Client()
   private readonly handlers = [] as Array<(e: Error) => void>
 
