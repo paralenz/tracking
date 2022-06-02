@@ -1,4 +1,4 @@
-import { PostHog, JsonMap, Configuration } from 'posthog-react-native'
+import { PostHog, JsonMap } from 'posthog-react-native'
 import { CaptureProperties, ITracking, UserProperties, User, Logger } from './types'
 export * from './types'
 
@@ -8,7 +8,7 @@ export class NativeTracking<TEvents> implements ITracking<TEvents> {
 
   constructor (
     apiKey: string,
-    config?: Configuration,
+    config?: PostHog.Configuration,
     private readonly logger?: Logger
   ) {
     this.client.catch(this.emitError)
