@@ -7,13 +7,14 @@ export class NativeTracking<TEvents> implements ITracking<TEvents> {
   private readonly handlers = [] as Array<(e: Error) => void>
 
   constructor (
-    apiKey: string,
-    config?: PostHog.Configuration,
+    private readonly config?: PostHog.Configuration,
     private readonly logger?: Logger
   ) {
     this.client.catch(this.emitError)
+  }
 
-    this.client.setup(apiKey, config)
+  setup (apiKey: string) {
+    this.client.setup(apiKey, this.config)
   }
 
   identify (userId: string, properties?: User): this {
