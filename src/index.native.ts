@@ -1,18 +1,23 @@
 import { PostHog, JsonMap, Configuration } from 'posthog-react-native'
-import { CaptureProperties, ITracking, UserProperties, User } from './types'
+import { CaptureProperties, ITracking, UserProperties, User, Logger } from './types'
 export * from './types'
 
 export class NativeTracking<TEvents> implements ITracking<TEvents> {
   private readonly client = new PostHog.Client()
   private readonly handlers = [] as Array<(e: Error) => void>
 
-  constructor (apiKey: string, config?: Configuration) {
+  constructor (
+    apiKey: string,
+    config?: Configuration,
+    private readonly logger?: Logger
+  ) {
     this.client.catch(this.emitError)
 
     this.client.setup(apiKey, config)
   }
 
   identify (userId: string, properties?: User): this {
+    this.log('Identifying ', userId, { properties })
     this.client.identify(userId, properties)
 
     return this
@@ -23,6 +28,7 @@ export class NativeTracking<TEvents> implements ITracking<TEvents> {
     properties?: CaptureProperties<TEvents>,
     userProperties?: UserProperties
   ): this {
+    this.log('Capture ', event, { properties, userProperties })
     this.client.capture(event as string, {
       ...(properties || {}),
       ...(userProperties || {})
@@ -32,6 +38,7 @@ export class NativeTracking<TEvents> implements ITracking<TEvents> {
   }
 
   screen (screenName: string, properties?: { [x: string]: unknown } & JsonMap): this {
+    this.log('Screen ', screenName, { properties })
     this.client.screen(screenName, properties)
 
     return this
@@ -43,5 +50,9 @@ export class NativeTracking<TEvents> implements ITracking<TEvents> {
 
   private emitError = (err: Error) => {
     this.handlers.forEach(handler => handler(err))
+  }
+
+  private log (...params: any[]) {
+    this.logger?.log('[Tracking]:', ...params)
   }
 }

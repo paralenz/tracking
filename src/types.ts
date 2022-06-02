@@ -20,6 +20,10 @@ export type UserProperties = {
 
 export type CaptureProperties<TEvents> = TEvents[keyof TEvents] & JsonMap
 
+export type Logger = {
+  log: (...params: any[]) => void
+}
+
 export interface ITracking<TEvents> {
   identify(
     userId: string,

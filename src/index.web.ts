@@ -1,13 +1,19 @@
 import posthog from 'posthog-js'
-import { CaptureProperties, ITracking, User, UserProperties } from './types'
+import { CaptureProperties, ITracking, Logger, User, UserProperties } from './types'
 export * from './types'
 
 export class Tracking<TEvents> implements ITracking<TEvents> {
-  constructor (apiKey: string, config?: posthog.Config) {
+  constructor (
+    apiKey: string,
+    config?: posthog.Config,
+    private readonly logger?: Logger
+  ) {
     posthog.init(apiKey, config)
   }
 
   identify (userId: string, properties?: User): this {
+    this.log('Identifying ', userId, { properties })
+
     posthog.identify(userId)
 
     if (properties) {
@@ -21,6 +27,7 @@ export class Tracking<TEvents> implements ITracking<TEvents> {
     properties?: CaptureProperties<TEvents>,
     userProperties?: UserProperties
   ): this {
+    this.log('Capture ', event, { properties, userProperties })
     posthog.capture(event as string, {
       ...(properties || {}),
       ...(userProperties || {})
@@ -30,8 +37,14 @@ export class Tracking<TEvents> implements ITracking<TEvents> {
   }
 
   screen (screenName: string, properties?: posthog.Properties): this {
+    this.log('Screen ', screenName, { properties })
+
     posthog.capture(screenName as string, properties)
 
     return this
+  }
+
+  private log (...params: any[]) {
+    this.logger?.log('[Tracking]:', ...params)
   }
 }
