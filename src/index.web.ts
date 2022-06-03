@@ -6,9 +6,10 @@ export class Tracking<TEvents> implements ITracking<TEvents> {
   constructor (
     apiKey: string,
     config?: posthog.Config,
+    name?: string,
     private readonly logger?: Logger
   ) {
-    posthog.init(apiKey, config)
+    posthog.init(apiKey, config, name)
   }
 
   identify (userId: string, properties?: User): this {
