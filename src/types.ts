@@ -1,7 +1,7 @@
 export type User = JsonMap & {
   firstName?: string | null
   lastName?: string | null
-  email: string | null
+  email?: string | null
 }
 
 export type JsonValue = boolean | number | string | null | JsonList | JsonMap;

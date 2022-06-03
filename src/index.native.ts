@@ -38,9 +38,17 @@ export class NativeTracking<TEvents> implements ITracking<TEvents> {
     return this
   }
 
-  screen (screenName: string, properties?: { [x: string]: unknown } & JsonMap): this {
+  screen (
+    screenName: string,
+    properties?: JsonMap,
+    userProperties?: UserProperties): this {
     this.log('Screen ', screenName, { properties })
-    this.client.screen(screenName, properties)
+    this.client.screen(screenName,
+      {
+        ...(properties || {}),
+        ...(userProperties || {})
+      }
+    )
 
     return this
   }
