@@ -1,7 +1,7 @@
 export type User = JsonMap & {
   firstName?: string | null
   lastName?: string | null
-  email: string | null
+  email?: string | null
 }
 
 export type JsonValue = boolean | number | string | null | JsonList | JsonMap;
@@ -19,6 +19,10 @@ export type UserProperties = {
 }
 
 export type CaptureProperties<TEvents> = TEvents[keyof TEvents] & JsonMap
+
+export type Logger = {
+  log: (...params: any[]) => void
+}
 
 export interface ITracking<TEvents> {
   identify(

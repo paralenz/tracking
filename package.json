@@ -1,6 +1,6 @@
 {
     "name": "@paralenz/tracking",
-    "version": "2.0.2",
+    "version": "2.1.1",
     "description": "",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -28,9 +28,11 @@
     "devDependencies": {
         "@jest/types": "^28.1.0",
         "@paralenz/eslint-config-typescript-react": "^1.2.3",
-        "jest": "^28.1.1",
-        "ts-jest": "^28.0.4",
-        "ts-node": "^10.8.1",
-        "typescript": "^4.7.3"
+        "jest": "^27.5.1",
+        "posthog-js": "^1.22.0",
+        "posthog-react-native": "^1.1.5",
+        "ts-jest": "^28.0.3",
+        "ts-node": "^10.8.0",
+        "typescript": "^4.7.2"
     }
 }

@@ -1,18 +1,24 @@
-import { PostHog, JsonMap, Configuration } from 'posthog-react-native'
-import { CaptureProperties, ITracking, UserProperties, User } from './types'
+import { PostHog, JsonMap } from 'posthog-react-native'
+import { CaptureProperties, ITracking, UserProperties, User, Logger } from './types'
 export * from './types'
 
-export class Tracking<TEvents> implements ITracking<TEvents> {
+export class NativeTracking<TEvents> implements ITracking<TEvents> {
   private readonly client = new PostHog.Client()
   private readonly handlers = [] as Array<(e: Error) => void>
 
-  constructor (apiKey: string, config?: Configuration) {
+  constructor (
+    private readonly config?: PostHog.Configuration,
+    private readonly logger?: Logger
+  ) {
     this.client.catch(this.emitError)
+  }
 
-    this.client.setup(apiKey, config)
+  setup (apiKey: string) {
+    this.client.setup(apiKey, this.config)
   }
 
   identify (userId: string, properties?: User): this {
+    this.log('Identifying ', userId, { properties })
     this.client.identify(userId, properties)
 
     return this
@@ -23,6 +29,7 @@ export class Tracking<TEvents> implements ITracking<TEvents> {
     properties?: CaptureProperties<TEvents>,
     userProperties?: UserProperties
   ): this {
+    this.log('Capture ', event, { properties, userProperties })
     this.client.capture(event as string, {
       ...(properties || {}),
       ...(userProperties || {})
@@ -31,8 +38,17 @@ export class Tracking<TEvents> implements ITracking<TEvents> {
     return this
   }
 
-  screen (screenName: string, properties?: { [x: string]: unknown } & JsonMap): this {
-    this.client.screen(screenName, properties)
+  screen (
+    screenName: string,
+    properties?: JsonMap,
+    userProperties?: UserProperties): this {
+    this.log('Screen ', screenName, { properties })
+    this.client.screen(screenName,
+      {
+        ...(properties || {}),
+        ...(userProperties || {})
+      }
+    )
 
     return this
   }
@@ -43,5 +59,9 @@ export class Tracking<TEvents> implements ITracking<TEvents> {
 
   private emitError = (err: Error) => {
     this.handlers.forEach(handler => handler(err))
+  }
+
+  private log (...params: any[]) {
+    this.logger?.log('[Tracking]:', ...params)
   }
 }
