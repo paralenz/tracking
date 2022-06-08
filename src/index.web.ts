@@ -41,7 +41,7 @@ export class Tracking<TEvents> implements ITracking<TEvents> {
     this.log('Screen ', screenName, { properties })
 
     posthog.capture(
-      screenName as string,
+      `[Screen]: ${screenName}`,
       {
         ...(properties || {}),
         ...(userProperties || {})
