@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: paralenz/actions/setup-node@master
+      - uses: paralenz/actions/setup-node@v2.1.7
         with:
           node-version: '14'
           token: ${{ secrets.NPM_AUTH_TOKEN }}
