@@ -7,14 +7,14 @@ jobs:
     name: Ensure that title uses gitmoji
     runs-on: ubuntu-latest
     steps:
-      - uses: paralenz/actions/gitmoji@v1.1.3
+      - uses: paralenz/actions/gitmoji@v2.1.8
 
   pull-request:
     name: Pull Request
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: paralenz/actions/setup-node@v1.1.3
+      - uses: paralenz/actions/setup-node@v2.1.8
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         with:
