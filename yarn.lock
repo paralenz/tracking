@@ -3588,10 +3588,10 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
-posthog-js@^1.28.0:
-  version "1.28.0"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.28.0.tgz#d1f0b7c51a5332aa5aaeb8afb91e17db0acd17e1"
-  integrity sha512-W60Xd7/UMwNO1zn1rRkkrE+qbL2dcA/PHi1TbUPNX0ArS2eijEjFolv0FBCEraZTJP19OnjTsYQEQS6fLL8ZvA==
+posthog-js@^1.35.0:
+  version "1.35.0"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.35.0.tgz#c74f38c5ec0cbf269936efd290e26dc9a1551175"
+  integrity sha512-eRAT+IH0t6M/LH3OygD3mobbr90620O7c0zrxJKKx6REvyzxYMSxjehwPEjFqBess2HJOLWLWSHq146h3EZeOw==
   dependencies:
     "@sentry/types" "^7.2.0"
     fflate "^0.4.1"
