@@ -3597,10 +3597,10 @@ posthog-js@^1.28.0:
     fflate "^0.4.1"
     rrweb-snapshot "^1.1.14"
 
-posthog-react-native@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/posthog-react-native/-/posthog-react-native-1.1.5.tgz#ba8da733b29114f9831fc1649b406a279ac86e1d"
-  integrity sha512-Dn2mYI7aMDujz6jPHPt1nhz1j/EzqxPe/td458Oly7VafBbwV76fH+KgHAgI9bh4u+YHp8XCxzTMjkKhby4IQA==
+posthog-react-native@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/posthog-react-native/-/posthog-react-native-2.5.0.tgz#254e007c7efec8378ef251fa5a6a17d9fc55aab5"
+  integrity sha512-HLNe39YL4pYckOru6Ry3cFZgQ/lsi6fB2QnlD3BQIFs3ftM5bX5fZSieqKNHU2zaSkmHeJSHdDgaJhlopWRedQ==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
