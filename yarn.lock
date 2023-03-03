@@ -778,11 +778,6 @@
     eslint-plugin-react-native "^4.0.0"
     standard "^17.0.0"
 
-"@sentry/types@^7.2.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.7.0.tgz#dd6bd3d119d7efea0e85dbaa4b17de1c22b63c7a"
-  integrity sha512-4x8O7uerSGLnYC10krHl9t8h7xXHn5FextqKYbTCXCnx2hC8D+9lz8wcbQAFo0d97wiUYqI8opmEgFVGx7c5hQ==
-
 "@sinclair/typebox@^0.24.1":
   version "0.24.19"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.24.19.tgz#5297278e0d8a1aea084685a3216074910ac6c113"
@@ -3588,12 +3583,11 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
-posthog-js@^1.28.0:
-  version "1.28.0"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.28.0.tgz#d1f0b7c51a5332aa5aaeb8afb91e17db0acd17e1"
-  integrity sha512-W60Xd7/UMwNO1zn1rRkkrE+qbL2dcA/PHi1TbUPNX0ArS2eijEjFolv0FBCEraZTJP19OnjTsYQEQS6fLL8ZvA==
+posthog-js@^1.50.3:
+  version "1.50.3"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.50.3.tgz#b89e0a41ba6e34d804490664c0854f3e37f3acbf"
+  integrity sha512-QWEQ1bvKKsHUBLYGGIgwC2t9Lsivoi5gkQ/QgzAQrK9bMHQgexAx5CCTgdQ2ael9o88i9eIExWQId6+/RpALsw==
   dependencies:
-    "@sentry/types" "^7.2.0"
     fflate "^0.4.1"
     rrweb-snapshot "^1.1.14"
 
